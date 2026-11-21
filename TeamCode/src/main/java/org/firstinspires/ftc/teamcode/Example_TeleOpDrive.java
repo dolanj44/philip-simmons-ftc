@@ -54,6 +54,7 @@ public class Example_TeleOpDrive extends LinearOpMode {
 
     // How much to cut the speed when the slow-mode bumper is held.
     static final double SLOW_MODE_SCALE = 0.3;
+    static final double FAST_MODE_SCALE = 2;
 
     @Override
     public void runOpMode() {
@@ -87,6 +88,7 @@ public class Example_TeleOpDrive extends LinearOpMode {
         frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        telemetry.addLine("THE GAME");
         telemetry.addData("Status", "Initialized. Press PLAY.");
         telemetry.update();
 
@@ -97,9 +99,12 @@ public class Example_TeleOpDrive extends LinearOpMode {
 
             // Pushing a stick UP gives a NEGATIVE number, so flip the sign
             // on the forward/back axis.
-            double drive = -gamepad2.left_stick_y;
-            double strafe = gamepad2.left_stick_x;
-            double turn = gamepad2.right_stick_x;
+            //straif
+            double drive = gamepad2.left_stick_x;
+            //spin?
+            double strafe = -gamepad2.right_stick_x;
+            //move
+            double turn = gamepad2.right_stick_y;
 
             // Mix the three commands into one power per wheel.
             double flPower = drive + strafe + turn;
@@ -122,11 +127,19 @@ public class Example_TeleOpDrive extends LinearOpMode {
             }
 
             // Slow mode for careful positioning.
-            if (gamepad2.right_bumper) {
+            if (gamepad2.right_trigger_pressed) {
                 flPower *= SLOW_MODE_SCALE;
                 blPower *= SLOW_MODE_SCALE;
                 frPower *= SLOW_MODE_SCALE;
                 brPower *= SLOW_MODE_SCALE;
+            }
+            //FAST
+            if (gamepad2.left_trigger_pressed) {
+                flPower *= FAST_MODE_SCALE;
+                frPower *= FAST_MODE_SCALE;
+                blPower *= FAST_MODE_SCALE;
+                brPower *= FAST_MODE_SCALE;
+
             }
 
             frontLeft.setPower(flPower);
@@ -134,12 +147,13 @@ public class Example_TeleOpDrive extends LinearOpMode {
             frontRight.setPower(frPower);
             backRight.setPower(brPower);
 
+            telemetry.addLine("THE GAME");
             telemetry.addData("Drive / Strafe / Turn", "%.2f / %.2f / %.2f", drive, strafe, turn);
             telemetry.addData("Front L / R", "%.2f / %.2f", flPower, frPower);
             telemetry.addData("Back  L / R", "%.2f / %.2f", blPower, brPower);
-            telemetry.addData("Slow mode", gamepad2.right_bumper ? "ON" : "off");
+            telemetry.addData("Slow mode", gamepad2.right_trigger_pressed ? "ON" : "off");
             telemetry.addLine();
-            telemetry.addLine("Left stick = move, right stick = turn, right bumper = slow");
+            telemetry.addLine("Left stick = move, right stick = turn, right trigger = slow");
             telemetry.update();
         }
 
