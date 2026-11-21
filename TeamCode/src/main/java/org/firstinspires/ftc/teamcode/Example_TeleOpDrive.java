@@ -10,12 +10,11 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  * What this shows:  how to drive the robot around with a controller. Forward,
  *                   backward, sideways (strafe) and spinning in place.
  *
- * Robot configuration needed on the Driver Hub (same names as TestCode and
- * Example_AutoDriveForward):
- *     DcMotor:  Front_Motor_Left
- *     DcMotor:  Back_Motor_Left
- *     DcMotor:  Front_Motor_Right
- *     DcMotor:  Back_Motor_Right
+ * Robot configuration needed on the Driver Hub:
+ *     DcMotor:  FLD  (front left drive)
+ *     DcMotor:  BLD  (back left drive)
+ *     DcMotor:  FRD  (front right drive)
+ *     DcMotor:  BRD  (back right drive)
  *     (No encoders are needed for driving. Only power is used here.)
  *
  * How to drive it:
@@ -61,14 +60,14 @@ public class Example_TeleOpDrive extends LinearOpMode {
 
         // ---------- INIT ----------
 
-        frontLeft = hardwareMap.get(DcMotor.class, "Front_Motor_Left");
-        backLeft = hardwareMap.get(DcMotor.class, "Back_Motor_Left");
-        frontRight = hardwareMap.get(DcMotor.class, "Front_Motor_Right");
-        backRight = hardwareMap.get(DcMotor.class, "Back_Motor_Right");
+        frontLeft = hardwareMap.get(DcMotor.class, "FLD");
+        backLeft = hardwareMap.get(DcMotor.class, "BLD");
+        frontRight = hardwareMap.get(DcMotor.class, "FRD");
+        backRight = hardwareMap.get(DcMotor.class, "BRD");
 
         // Motors on opposite sides face opposite ways, so one side normally
         // needs REVERSE for "positive power" to mean "robot goes forward".
-        // These match Example_AutoDriveForward (and TestCode). If pushing
+        // These match Example_AutoDriveForward. If pushing
         // the stick forward does NOT drive the robot forward, fix the
         // directions here AND in the autonomous example so they agree.
         frontLeft.setDirection(DcMotor.Direction.FORWARD);
@@ -98,9 +97,9 @@ public class Example_TeleOpDrive extends LinearOpMode {
 
             // Pushing a stick UP gives a NEGATIVE number, so flip the sign
             // on the forward/back axis.
-            double drive = -gamepad1.left_stick_y;
-            double strafe = gamepad1.left_stick_x;
-            double turn = gamepad1.right_stick_x;
+            double drive = -gamepad2.left_stick_y;
+            double strafe = gamepad2.left_stick_x;
+            double turn = gamepad2.right_stick_x;
 
             // Mix the three commands into one power per wheel.
             double flPower = drive + strafe + turn;
@@ -123,7 +122,7 @@ public class Example_TeleOpDrive extends LinearOpMode {
             }
 
             // Slow mode for careful positioning.
-            if (gamepad1.right_bumper) {
+            if (gamepad2.right_bumper) {
                 flPower *= SLOW_MODE_SCALE;
                 blPower *= SLOW_MODE_SCALE;
                 frPower *= SLOW_MODE_SCALE;
@@ -138,7 +137,7 @@ public class Example_TeleOpDrive extends LinearOpMode {
             telemetry.addData("Drive / Strafe / Turn", "%.2f / %.2f / %.2f", drive, strafe, turn);
             telemetry.addData("Front L / R", "%.2f / %.2f", flPower, frPower);
             telemetry.addData("Back  L / R", "%.2f / %.2f", blPower, brPower);
-            telemetry.addData("Slow mode", gamepad1.right_bumper ? "ON" : "off");
+            telemetry.addData("Slow mode", gamepad2.right_bumper ? "ON" : "off");
             telemetry.addLine();
             telemetry.addLine("Left stick = move, right stick = turn, right bumper = slow");
             telemetry.update();

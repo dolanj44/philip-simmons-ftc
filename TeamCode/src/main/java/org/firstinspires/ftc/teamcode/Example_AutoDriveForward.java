@@ -10,11 +10,11 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  * What this shows:  the simplest useful autonomous. The robot drives straight
  *                   forward a set distance and stops. No driver input.
  *
- * Robot configuration needed on the Driver Hub (same names as TestCode):
- *     DcMotor:  Front_Motor_Left
- *     DcMotor:  Back_Motor_Left
- *     DcMotor:  Front_Motor_Right
- *     DcMotor:  Back_Motor_Right
+ * Robot configuration needed on the Driver Hub:
+ *     DcMotor:  FLD  (front left drive)
+ *     DcMotor:  BLD  (back left drive)
+ *     DcMotor:  FRD  (front right drive)
+ *     DcMotor:  BRD  (back right drive)
  *     All four need their encoder cables plugged in.
  *
  * How to run it:
@@ -60,17 +60,17 @@ public class Example_AutoDriveForward extends LinearOpMode {
 
         // ---------- INIT ----------
 
-        frontLeft = hardwareMap.get(DcMotor.class, "Front_Motor_Left");
-        backLeft = hardwareMap.get(DcMotor.class, "Back_Motor_Left");
-        frontRight = hardwareMap.get(DcMotor.class, "Front_Motor_Right");
-        backRight = hardwareMap.get(DcMotor.class, "Back_Motor_Right");
+        frontLeft = hardwareMap.get(DcMotor.class, "FLD");
+        backLeft = hardwareMap.get(DcMotor.class, "BLD");
+        frontRight = hardwareMap.get(DcMotor.class, "FRD");
+        backRight = hardwareMap.get(DcMotor.class, "BRD");
 
         // Motors on opposite sides of the robot face opposite ways, so one
         // side normally has to be REVERSED for "forward" to move the robot
-        // forward. TestCode uses FORWARD on all four; if your robot drives
+        // forward. all four start as FORWARD; if your robot drives
         // in circles or backwards, flip the side that is wrong.
-        frontLeft.setDirection(DcMotor.Direction.FORWARD);
-        backLeft.setDirection(DcMotor.Direction.FORWARD);
+        frontLeft.setDirection(DcMotor.Direction.REVERSE);
+        backLeft.setDirection(DcMotor.Direction.REVERSE);
         frontRight.setDirection(DcMotor.Direction.FORWARD);
         backRight.setDirection(DcMotor.Direction.FORWARD);
 
