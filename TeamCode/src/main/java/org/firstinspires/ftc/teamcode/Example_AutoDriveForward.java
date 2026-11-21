@@ -65,14 +65,14 @@ public class Example_AutoDriveForward extends LinearOpMode {
         frontRight = hardwareMap.get(DcMotor.class, "FRD");
         backRight = hardwareMap.get(DcMotor.class, "BRD");
 
-        // Motors on opposite sides of the robot face opposite ways, so one
-        // side normally has to be REVERSED for "forward" to move the robot
-        // forward. all four start as FORWARD; if your robot drives
-        // in circles or backwards, flip the side that is wrong.
+        // Which way is "positive"? On our robot all four motors needed
+        // REVERSE for positive power to drive the robot forward. If the
+        // robot drives backwards or in circles, change these (and the same
+        // lines in Example_TeleOpDrive so the two agree).
         frontLeft.setDirection(DcMotor.Direction.REVERSE);
         backLeft.setDirection(DcMotor.Direction.REVERSE);
-        frontRight.setDirection(DcMotor.Direction.FORWARD);
-        backRight.setDirection(DcMotor.Direction.FORWARD);
+        frontRight.setDirection(DcMotor.Direction.REVERSE);
+        backRight.setDirection(DcMotor.Direction.REVERSE);
 
         // BRAKE makes the robot stop instead of coasting past the target.
         setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

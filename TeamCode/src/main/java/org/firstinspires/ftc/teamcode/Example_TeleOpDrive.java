@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 /*
  * TELEOP EXAMPLE: MECANUM DRIVE WITH A GAMEPAD
@@ -71,10 +72,10 @@ public class Example_TeleOpDrive extends LinearOpMode {
         // These match Example_AutoDriveForward. If pushing
         // the stick forward does NOT drive the robot forward, fix the
         // directions here AND in the autonomous example so they agree.
-        frontLeft.setDirection(DcMotor.Direction.FORWARD);
-        backLeft.setDirection(DcMotor.Direction.FORWARD);
-        frontRight.setDirection(DcMotor.Direction.FORWARD);
-        backRight.setDirection(DcMotor.Direction.FORWARD);
+        frontLeft.setDirection(DcMotor.Direction.REVERSE);
+        backLeft.setDirection(DcMotor.Direction.REVERSE);
+        frontRight.setDirection(DcMotor.Direction.REVERSE);
+        backRight.setDirection(DcMotor.Direction.REVERSE);
 
         // We only want to set power, not use encoders for speed control.
         frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
