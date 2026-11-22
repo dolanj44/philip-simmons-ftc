@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.varsity;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -31,8 +31,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  *     Wheel diameter is set below to 104 mm. Change it if the wheels change.
  *     TEST WITH THE ROBOT ON A STAND OR BLOCKS FIRST.
  */
-@Autonomous(name = "Example: Auto Drive Forward 2 ft", group = "Examples")
-public class Example_AutoDriveForward extends LinearOpMode {
+@Autonomous(name = "Varsity Example: Auto Drive Forward 2 ft", group = "Varsity")
+public class Varsity_AutoDriveForward extends LinearOpMode {
 
     private DcMotor frontLeft = null;
     private DcMotor backLeft = null;
@@ -68,7 +68,7 @@ public class Example_AutoDriveForward extends LinearOpMode {
         // Which way is "positive"? On our robot all four motors needed
         // REVERSE for positive power to drive the robot forward. If the
         // robot drives backwards or in circles, change these (and the same
-        // lines in Example_TeleOpDrive so the two agree).
+        // lines in Varsity_TeleOpDrive so the two agree).
         frontLeft.setDirection(DcMotor.Direction.REVERSE);
         backLeft.setDirection(DcMotor.Direction.REVERSE);
         frontRight.setDirection(DcMotor.Direction.REVERSE);

@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.jv;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -45,8 +45,8 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
  *     This only works with MECANUM wheels. With ordinary wheels (tank drive)
  *     the robot cannot strafe, and you would only use drive and turn.
  */
-@TeleOp(name = "Example: TeleOp Mecanum Drive", group = "Examples")
-public class Example_TeleOpDrive extends LinearOpMode {
+@TeleOp(name = "JV Example: TeleOp Mecanum Drive", group = "JV")
+public class JV_TeleOpDrive extends LinearOpMode {
 
     private DcMotor frontLeft = null;
     private DcMotor backLeft = null;
@@ -69,7 +69,7 @@ public class Example_TeleOpDrive extends LinearOpMode {
 
         // Motors on opposite sides face opposite ways, so one side normally
         // needs REVERSE for "positive power" to mean "robot goes forward".
-        // These match Example_AutoDriveForward. If pushing
+        // These match JV_AutoDriveForward. If pushing
         // the stick forward does NOT drive the robot forward, fix the
         // directions here AND in the autonomous example so they agree.
         frontLeft.setDirection(DcMotor.Direction.REVERSE);
